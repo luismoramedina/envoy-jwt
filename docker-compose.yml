@@ -1,0 +1,12 @@
+version: "3"
+services:
+
+  envoy:
+    container_name: envoy
+    image: envoyproxy/envoy:v1.8.0
+    volumes:
+      - ${PWD}/envoy.yaml:/etc/envoy/envoy.yaml:ro
+      - ${PWD}/public.jwk:/etc/envoy/public.jwk:ro
+    entrypoint: /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
+    ports:
+    - "10000:10000"
